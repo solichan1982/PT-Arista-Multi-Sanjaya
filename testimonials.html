@@ -35,6 +35,12 @@
             border-radius: 1rem; /* Rounded corners */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             padding: 2rem;
+            cursor: pointer; /* Indicate clickable */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 8px -3px rgba(0, 0, 0, 0.08);
         }
         .icon {
             display: inline-block;
@@ -88,9 +94,63 @@
             opacity: 1;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 1rem;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-height: 90vh; /* Limit height to allow scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            text-align: center; /* Center content in modal */
+        }
+
+        /* Add Animation */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         /* Responsive adjustments for mobile menu */
         @media (max-width: 768px) {
-            .mobile-menu-button { /* Renamed for clarity */
+            .mobile-menu-button {
                 display: block;
             }
             #mobile-menu.hidden {
@@ -110,6 +170,10 @@
                 width: 25px;
                 height: 25px;
             }
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -126,7 +190,7 @@
                 <a href="about.html" class="hover:text-amber-400 transition-colors duration-300">Tentang Kami</a>
                 <a href="services.html" class="hover:text-amber-400 transition-colors duration-300">Layanan</a>
                 <a href="projects.html" class="hover:text-amber-400 transition-colors duration-300">Proyek</a>
-                <a href="testimonials.html" class="hover:text-amber-400 transition-colors duration-300">Testimoni</a>
+                <a href="testimonials.html" class="hover:text-amber-400 transition-colors duration-300 font-bold">Testimoni</a>
                 <a href="contact.html" class="hover:text-amber-400 transition-colors duration-300">Kontak</a>
             </div>
             <!-- Mobile Menu Button (Hamburger) -->
@@ -142,7 +206,7 @@
             <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Tentang Kami</a>
             <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Layanan</a>
             <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Proyek</a>
-            <a href="testimonials.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimoni</a>
+            <a href="testimonials.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 font-bold">Testimoni</a>
             <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Kontak</a>
         </div>
     </nav>
@@ -151,90 +215,183 @@
         <section class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                 <h1 class="text-4xl md:text-5xl section-heading text-center mb-12">Apa Kata Klien Kami</h1>
+                <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16">
+                    Dengarkan langsung dari klien kami yang puas tentang pengalaman mereka bekerja sama dengan PT Arista Multi Sanjaya. Kepuasan Anda adalah prioritas utama kami.
+                </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "Saya sangat terkesan dengan profesionalisme dan kualitas kerja PT Arista Multi Sanjaya. Proyek kami selesai tepat waktu dan hasilnya melebihi ekspektasi. Sangat direkomendasikan!"
+                    <!-- Testimonial Card 1 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-1')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Joko" alt="Foto Klien Joko Dwi" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "Saya sangat terkesan dengan profesionalisme dan kualitas kerja PT Arista Multi Sanjaya. Proyek kami selesai tepat waktu dan hasilnya melebihi ekspektasi. Komunikasi yang luar biasa dan perhatian terhadap detail membuat seluruh proses menjadi lancar. Sangat direkomendasikan untuk siapa pun yang mencari mitra konstruksi yang andal dan berkualitas tinggi!"
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Joko" alt="Foto Klien Joko Dwi" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Joko Dwi</p>
-                                <p class="text-sm text-gray-500">CEO, PT. Maju Bersama</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Joko Dwi</p>
+                            <p class="text-sm text-gray-500">CEO, PT. Maju Bersama</p>
                         </div>
                     </div>
-                    <!-- Testimonial 2 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "PT Arista Multi Sanjaya memberikan solusi inovatif untuk tantangan konstruksi kami. Komunikasi yang luar biasa dan perhatian terhadap detail membuat seluruh proses menjadi lancar."
+
+                    <!-- Testimonial Card 2 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-2')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Ani" alt="Foto Klien Ani Susanti" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "PT Arista Multi Sanjaya memberikan solusi inovatif untuk tantangan konstruksi kami. Mereka tidak hanya membangun, tetapi juga memahami visi kami dan mewujudkannya dengan sempurna. Timnya sangat responsif dan selalu siap membantu. Pengalaman yang sangat memuaskan dari awal hingga akhir proyek."
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Ani" alt="Foto Klien Ani Susanti" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Ani Susanti</p>
-                                <p class="text-sm text-gray-500">Direktur, Yayasan Pendidikan Harapan</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Ani Susanti</p>
+                            <p class="text-sm text-gray-500">Direktur, Yayasan Pendidikan Harapan</p>
                         </div>
                     </div>
-                    <!-- Testimonial 3 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "Kualitas pekerjaan konstruksi dari PT Arista Multi Sanjaya benar-benar luar biasa. Bangunan yang mereka bangun kokoh, modern, dan sesuai dengan semua spesifikasi yang kami inginkan."
+
+                    <!-- Testimonial Card 3 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-3')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Budi" alt="Foto Klien Budi Santoso" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "Kualitas desain interior dari PT Arista Multi Sanjaya benar-benar luar biasa! Mereka berhasil mengubah kantor kami menjadi ruang yang modern, fungsional, dan sangat nyaman. Prosesnya lancar dan hasilnya melebihi ekspektasi. Terima kasih atas kerja keras dan kreativitasnya!"
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Budi" alt="Foto Klien Budi Santoso" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Budi Santoso</p>
-                                <p class="text-sm text-gray-500">Manajer Proyek, PT. Griya Indah</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Budi Santoso</p>
+                            <p class="text-sm text-gray-500">Manajer Operasional, Global Tech</p>
                         </div>
                     </div>
-                    <!-- Testimonial 4 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "Desain interior yang dikerjakan oleh tim Arista Multi Sanjaya sangat memukau. Mereka berhasil mengubah kantor kami menjadi ruang yang inspiratif dan nyaman untuk bekerja."
+
+                    <!-- Testimonial Card 4 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-4')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Citra" alt="Foto Klien Citra Dewi" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "Sebagai pengembang properti, saya selalu mencari mitra konstruksi yang dapat diandalkan. PT Arista Multi Sanjaya telah membuktikan diri sebagai yang terbaik. Proyek perumahan kami selesai sesuai jadwal dan standar kualitas yang sangat tinggi. Kolaborasi yang hebat!"
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Citra" alt="Foto Klien Citra Dewi" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Citra Dewi</p>
-                                <p class="text-sm text-gray-500">Pendiri, Tech Innovate</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Citra Dewi</p>
+                            <p class="text-sm text-gray-500">Direktur, Citra Properti</p>
                         </div>
                     </div>
-                    <!-- Testimonial 5 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "Kami sangat puas dengan renovasi rumah kami. Tim sangat profesional, detail, dan hasilnya melebihi ekspektasi kami. Rumah kami kini terasa seperti baru!"
+
+                    <!-- Testimonial Card 5 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-5')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Dedi" alt="Foto Klien Dedi Kurniawan" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "Saya sangat menghargai dedikasi tim PT Arista Multi Sanjaya dalam proyek renovasi rumah saya. Mereka sangat detail, rapi, dan hasilnya persis seperti yang saya impikan. Transformasi yang luar biasa! Terima kasih banyak."
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Fajar" alt="Foto Klien Fajar Setiawan" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Fajar Setiawan</p>
-                                <p class="text-sm text-gray-500">Pemilik Rumah</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Dedi Kurniawan</p>
+                            <p class="text-sm text-gray-500">Pemilik Rumah</p>
                         </div>
                     </div>
-                    <!-- Testimonial 6 -->
-                    <div class="card p-8">
-                        <p class="text-gray-700 text-lg italic mb-6">
-                            "Proyek ekspansi pusat perbelanjaan kami berjalan sangat mulus berkat manajemen proyek yang efisien dari PT Arista Multi Sanjaya. Mereka adalah mitra yang handal."
+
+                    <!-- Testimonial Card 6 -->
+                    <div class="card p-8" onclick="openModal('modal-testimonial-6')">
+                        <img src="https://placehold.co/100x100/d1d5db/000000?text=Eka" alt="Foto Klien Eka Putri" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+                        <p class="text-gray-700 text-lg italic mb-4 line-clamp-3">
+                            "PT Arista Multi Sanjaya adalah pilihan tepat untuk proyek infrastruktur kami. Mereka menunjukkan keahlian teknis yang mendalam dan manajemen proyek yang sangat baik. Hasilnya adalah jembatan yang kokoh dan fungsional. Sangat profesional!"
                         </p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Rina" alt="Foto Klien Rina Wijaya" class="w-12 h-12 rounded-full mr-4 object-cover">
-                            <div>
-                                <p class="font-semibold text-gray-800">Rina Wijaya</p>
-                                <p class="text-sm text-gray-500">Direktur Utama, Mega Mall Group</p>
-                            </div>
+                        <div class="text-center">
+                            <p class="font-semibold text-gray-800">Eka Putri</p>
+                            <p class="text-sm text-gray-500">Kepala Proyek, Dinas Pekerjaan Umum</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Modals for Testimonial Details -->
+    <!-- Modal Testimonial 1 -->
+    <div id="modal-testimonial-1" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-1')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Joko" alt="Foto Klien Joko Dwi" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Joko Dwi</h3>
+            <p class="text-md text-gray-600 mb-6">CEO, PT. Maju Bersama</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "Saya sangat terkesan dengan profesionalisme dan kualitas kerja PT Arista Multi Sanjaya. Proyek kami selesai tepat waktu dan hasilnya melebihi ekspektasi. Komunikasi yang luar biasa dan perhatian terhadap detail membuat seluruh proses menjadi lancar. Mereka benar-benar mendengarkan kebutuhan kami dan memberikan solusi yang tepat. Sangat direkomendasikan untuk siapa pun yang mencari mitra konstruksi yang andal dan berkualitas tinggi! Saya pasti akan bekerja sama lagi di proyek mendatang."
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Testimonial 2 -->
+    <div id="modal-testimonial-2" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-2')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Ani" alt="Foto Klien Ani Susanti" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Ani Susanti</h3>
+            <p class="text-md text-gray-600 mb-6">Direktur, Yayasan Pendidikan Harapan</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "PT Arista Multi Sanjaya memberikan solusi inovatif untuk tantangan konstruksi kami. Mereka tidak hanya membangun, tetapi juga memahami visi kami dan mewujudkannya dengan sempurna. Timnya sangat responsif dan selalu siap membantu dengan setiap pertanyaan atau perubahan yang kami miliki. Pengalaman yang sangat memuaskan dari awal hingga akhir proyek. Kami sangat senang dengan hasil akhir fasilitas pendidikan kami."
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Testimonial 3 -->
+    <div id="modal-testimonial-3" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-3')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Budi" alt="Foto Klien Budi Santoso" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Budi Santoso</h3>
+            <p class="text-md text-gray-600 mb-6">Manajer Operasional, Global Tech</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "Kualitas desain interior dari PT Arista Multi Sanjaya benar-benar luar biasa! Mereka berhasil mengubah kantor kami menjadi ruang yang modern, fungsional, dan sangat nyaman. Setiap detail diperhatikan, dari pemilihan warna hingga penataan furnitur. Prosesnya lancar dan hasilnya melebihi ekspektasi kami. Terima kasih banyak atas kerja keras dan kreativitasnya! Lingkungan kerja kami kini jauh lebih inspiratif."
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Testimonial 4 -->
+    <div id="modal-testimonial-4" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-4')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Citra" alt="Foto Klien Citra Dewi" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Citra Dewi</h3>
+            <p class="text-md text-gray-600 mb-6">Direktur, Citra Properti</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "Sebagai pengembang properti, saya selalu mencari mitra konstruksi yang dapat diandalkan, dan PT Arista Multi Sanjaya telah membuktikan diri sebagai yang terbaik. Proyek perumahan kami selesai sesuai jadwal dan standar kualitas yang sangat tinggi. Mereka sangat profesional dalam manajemen proyek dan selalu mengutamakan kepuasan klien. Kolaborasi yang hebat dan kami menantikan proyek-proyek berikutnya bersama mereka!"
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Testimonial 5 -->
+    <div id="modal-testimonial-5" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-5')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Dedi" alt="Foto Klien Dedi Kurniawan" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Dedi Kurniawan</h3>
+            <p class="text-md text-gray-600 mb-6">Pemilik Rumah</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "Saya sangat menghargai dedikasi tim PT Arista Multi Sanjaya dalam proyek renovasi rumah saya. Mereka sangat detail, rapi, dan hasilnya persis seperti yang saya impikan. Proses pengerjaan berjalan lancar dan mereka selalu memberikan update yang jelas. Transformasi yang luar biasa! Rumah saya kini terasa seperti baru dan jauh lebih fungsional. Terima kasih banyak atas kerja keras dan perhatiannya."
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Testimonial 6 -->
+    <div id="modal-testimonial-6" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modal-testimonial-6')">&times;</span>
+            <img src="https://placehold.co/150x150/d1d5db/000000?text=Eka" alt="Foto Klien Eka Putri" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-400 shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">Eka Putri</h3>
+            <p class="text-md text-gray-600 mb-6">Kepala Proyek, Dinas Pekerjaan Umum</p>
+            <p class="text-gray-700 text-lg italic leading-relaxed">
+                "PT Arista Multi Sanjaya adalah pilihan tepat untuk proyek infrastruktur kami. Mereka menunjukkan keahlian teknis yang mendalam dan manajemen proyek yang sangat baik, memastikan setiap tahapan berjalan sesuai rencana. Hasilnya adalah jembatan yang kokoh dan fungsional, selesai tepat waktu dan sesuai anggaran. Kami sangat terkesan dengan profesionalisme dan komitmen mereka. Sangat profesional dan direkomendasikan untuk proyek-proyek skala besar!"
+            </p>
+            <div class="text-center mt-8">
+                <a href="contact.html" class="btn-primary inline-block">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8 rounded-t-3xl shadow-lg">
@@ -293,6 +450,25 @@
             setTimeout(() => {
                 messageBox.classList.remove('show');
             }, 3000); // Message disappears after 3 seconds
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
