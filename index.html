@@ -152,6 +152,50 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+        }
+
+        /* Message Box for copy to clipboard */
+        #messageBox {
+            position: fixed;
+            bottom: 4rem; /* Adjust based on WhatsApp button */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1001;
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+        #messageBox.show {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments for mobile menu */
         @media (max-width: 768px) {
             .mySlides {
                 height: 300px;
@@ -172,6 +216,10 @@
                 bottom: 20px;
                 right: 20px;
                 font-size: 24px;
+            }
+            .whatsapp-float svg {
+                width: 25px;
+                height: 25px;
             }
         }
     </style>
@@ -234,13 +282,19 @@
                         <p>Desain modern, efisiensi energi, dan ruang kerja inovatif.</p>
                     </div>
                 </div>
-                <div class="mySlides fade" style="background-image: url('aseet_proyek/R (1).jpeg');">
+                <div class="mySlides fade" style="background-image: url('aseet_proyek/e4b6ef44-builder-at-construction-site_10sf0j00qf0hl01u00001o.jpg');">
                     <div class="slide-text">
                         <h3>Promo Spesial Desain Interior Hunian</h3>
                         <p>Dapatkan diskon 15% untuk paket desain interior rumah impian Anda!</p>
                     </div>
                 </div>
                 <div class="mySlides fade" style="background-image: url('aseet_proyek/fdt.webp');">
+                    <div class="slide-text">
+                        <h3>Pembangunan Jembatan "Sanjaya Bridge"</h3>
+                        <p>Menghubungkan dua wilayah, mempercepat pertumbuhan ekonomi lokal.</p>
+                    </div>
+                </div>
+                <div class="mySlides fade" style="background-image: url('aseet_proyek/R (1).jpeg');">
                     <div class="slide-text">
                         <h3>Pembangunan Jembatan "Sanjaya Bridge"</h3>
                         <p>Menghubungkan dua wilayah, mempercepat pertumbuhan ekonomi lokal.</p>
@@ -489,11 +543,66 @@
                         <a href="project3.html" class="btn-primary w-full mt-auto text-center">Lihat Selengkapnya</a>
                     </div>
                 </div>
-                <!-- Add more project cards as needed -->
+                <!-- New Project Card 4: Desain Interior Kantor Startup -->
+                <div class="card p-0 overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/808080/ffffff?text=Kantor+Startup" alt="Desain Interior Kantor Startup" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Desain Interior Kantor Startup</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Perancangan interior kantor modern dan dinamis untuk startup teknologi, memaksimalkan ruang kolaborasi dan produktivitas.</p>
+                        <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                            <li>Lokasi: Jakarta Selatan</li>
+                            <li>Tahun Selesai: 2024</li>
+                            <li>Jenis: Desain Interior</li>
+                        </ul>
+                        <a href="project4.html" class="btn-primary w-full mt-auto text-center">Lihat Selengkapnya</a>
+                    </div>
+                </div>
+                <!-- New Project Card 5: Renovasi Rumah Klasik Modern -->
+                <div class="card p-0 overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/808080/ffffff?text=Renovasi+Rumah" alt="Renovasi Rumah Klasik Modern" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Renovasi Rumah Klasik Modern</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Renovasi total rumah tinggal dengan perpaduan gaya klasik dan sentuhan modern, meningkatkan nilai estetika dan fungsionalitas.</p>
+                        <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                            <li>Lokasi: Surabaya</li>
+                            <li>Tahun Selesai: 2023</li>
+                            <li>Jenis: Renovasi Residensial</li>
+                        </ul>
+                        <a href="project5.html" class="btn-primary w-full mt-auto text-center">Lihat Selengkapnya</a>
+                    </div>
+                </div>
+                <!-- New Project Card 6: Ekspansi Pusat Perbelanjaan -->
+                <div class="card p-0 overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/808080/ffffff?text=Pusat+Perbelanjaan" alt="Ekspansi Pusat Perbelanjaan" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Ekspansi Pusat Perbelanjaan</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Penambahan sayap baru pada pusat perbelanjaan yang sudah ada, termasuk area ritel, restoran, dan fasilitas hiburan.</p>
+                        <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                            <li>Lokasi: Bandung</li>
+                            <li>Tahun Selesai: 2022</li>
+                            <li>Jenis: Ekspansi Komersial</li>
+                        </ul>
+                        <a href="project6.html" class="btn-primary w-full mt-auto text-center">Lihat Selengkapnya</a>
+                    </div>
+                </div>
             </div>
             <div class="text-center mt-12">
                 <a href="projects.html" class="btn-primary inline-block">Lihat Semua Proyek</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl section-heading mb-12">Lihat Kami Beraksi</h2>
+            <div class="video-container mx-auto max-w-4xl">
+                <!-- Replace 'YOUR_YOUTUBE_VIDEO_ID' with your actual YouTube video ID -->
+                <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?autoplay=0&mute=1&loop=1&playlist=YOUR_YOUTUBE_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="mt-8 text-gray-700 max-w-2xl mx-auto">
+                Saksikan bagaimana kami mewujudkan visi menjadi kenyataan melalui proses kerja yang profesional dan penuh dedikasi. Video ini menampilkan cuplikan dari beberapa proyek kami dan komitmen tim kami terhadap keunggulan.
+            </p>
         </div>
     </section>
 
@@ -502,26 +611,26 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl section-heading text-center mb-12">Apa Kata Klien Kami</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Testimonial 1 -->
+                <!-- Testimonial 1 (Singkat) -->
                 <div class="card p-8">
                     <p class="text-gray-700 text-lg italic mb-6">
                         "Saya sangat terkesan dengan profesionalisme dan kualitas kerja PT Arista Multi Sanjaya. Proyek kami selesai tepat waktu dan hasilnya melebihi ekspektasi. Sangat direkomendasikan!"
                     </p>
                     <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/d1d5db/ffffff?text=JD" alt="Client Avatar" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Joko" alt="Foto Klien Joko Dwi" class="w-12 h-12 rounded-full mr-4 object-cover">
                         <div>
                             <p class="font-semibold text-gray-800">Joko Dwi</p>
                             <p class="text-sm text-gray-500">CEO, PT. Maju Bersama</p>
                         </div>
                     </div>
                 </div>
-                <!-- Testimonial 2 -->
+                <!-- Testimonial 2 (Singkat) -->
                 <div class="card p-8">
                     <p class="text-gray-700 text-lg italic mb-6">
                         "PT Arista Multi Sanjaya memberikan solusi inovatif untuk tantangan konstruksi kami. Komunikasi yang luar biasa dan perhatian terhadap detail membuat seluruh proses menjadi lancar."
                     </p>
                     <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/d1d5db/ffffff?text=AS" alt="Client Avatar" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="https://placehold.co/60x60/d1d5db/000000?text=Foto+Ani" alt="Foto Klien Ani Susanti" class="w-12 h-12 rounded-full mr-4 object-cover">
                         <div>
                             <p class="font-semibold text-gray-800">Ani Susanti</p>
                             <p class="text-sm text-gray-500">Direktur, Yayasan Pendidikan Harapan</p>
@@ -529,57 +638,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Us Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-100">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl section-heading mb-12">Hubungi Kami</h2>
-            <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                Kami siap membantu mewujudkan proyek konstruksi dan desain interior Anda. Jangan ragu untuk menghubungi kami untuk konsultasi atau penawaran.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="card p-6 text-left">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Informasi Kontak</h3>
-                    <p class="mb-3 text-gray-700 flex items-center">
-                        <svg class="w-6 h-6 mr-3 text-amber-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>
-                        Jl. Raya Contoh No. 123, Jakarta Timur, Indonesia
-                    </p>
-                    <p class="mb-3 text-gray-700 flex items-center cursor-pointer" onclick="copyToClipboard('+62 21 1234 5678', 'Nomor telepon berhasil disalin!')">
-                        <svg class="w-6 h-6 mr-3 text-amber-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>
-                        <span id="phoneNumber">+62 21 1234 5678</span> <span class="text-sm text-gray-400 ml-2">(Klik untuk salin)</span>
-                    </p>
-                    <p class="mb-3 text-gray-700 flex items-center cursor-pointer" onclick="copyToClipboard('info@arista.com', 'Email berhasil disalin!')">
-                        <svg class="w-6 h-6 mr-3 text-amber-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>
-                        <span id="emailAddress">info@arista.com</span> <span class="text-sm text-gray-400 ml-2">(Klik untuk salin)</span>
-                    </p>
-                    <p class="mb-3 text-gray-700 flex items-center">
-                        <svg class="w-6 h-6 mr-3 text-amber-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>
-                        <a href="https://www.arista-multisanjaya.com" target="_blank" class="text-blue-600 hover:underline">www.arista-multisanjaya.com</a>
-                    </p>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Kirim Pesan</h3>
-                    <form class="space-y-4">
-                        <div>
-                            <input type="text" placeholder="Nama Lengkap Anda" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
-                        </div>
-                        <div>
-                            <input type="email" placeholder="Email Anda" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Subjek" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
-                        </div>
-                        <div>
-                            <textarea placeholder="Pesan Anda" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
             <div class="text-center mt-12">
-                <a href="contact.html" class="btn-primary inline-block">Kunjungi Halaman Kontak</a>
+                <a href="testimonials.html" class="btn-primary inline-block">Lihat Semua Testimoni</a>
             </div>
         </div>
     </section>
@@ -595,7 +655,6 @@
                 <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.148 3.252 1.691 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 2.163c-3.204 0-3.584.012-4.85.07-3.252.148-4.771 1.691-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.149 3.225 1.664 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 3.627a6.21 6.21 0 1 0 0 12.42 6.21 6.21 0 0 0 0-12.42zm0 2.163a4.047 4.047 0 1 1 0 8.094 4.047 4.047 0 0 1 0-8.094zm6.527-4.577a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>
                 </a>
-                <!-- Add more social media links as needed -->
             </div>
         </div>
     </footer>
@@ -603,17 +662,23 @@
     <!-- WhatsApp Button -->
     <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
-            <path d="M12.04 2C7.34 2 3.54 5.79 3.54 10.5C3.54 12.12 4 13.68 4.83 15.04L3.02 21.04L9.12 19.23C10.48 20.06 12.04 20.5 13.66 20.5C18.36 20.5 22.15 16.71 22.15 12C22.15 7.3 18.36 3.5 18.36 3.5C12.04 2 12.04 2 12.04 2ZM13.66 18.84C12.39 18.84 11.16 18.5 10.04 17.89L9.7 17.7L6.6 18.6L7.5 15.6L7.31 15.26C6.67 14.1 6.33 12.8 6.33 11.45C6.33 7.8 9.24 4.89 12.89 4.89C14.68 4.89 16.32 5.6 17.55 6.83C18.78 8.06 19.49 9.7 19.49 11.45C19.49 15.1 16.58 18.01 12.93 18.01L13.66 18.84Z"/>
+            <path d="M12.04 2C7.34 2 3.54 5.79 3.54 10.5C3.54 12.12 4 13.68 4.83 15.04L3.02 21.04L9.12 19.23C10.48 20.06 12.04 20.5 13.66 20.5C18.36 20.5 22.15 16.71 22.15 12C22.15 7.3 18.36 3.5 18.36 3.5C12.04 2 12.04 2 12.04 2ZM13.66 18.84C12.39 18.84 11.16 18.5 10.04 17.89L9.7 17.7L6.6 18.6L7.5 15.6L7.31 15.26C6.67 14.1 6.33 12.8 6.33 11.45C6.33 7.8 9.24 4.89 12.89 4.89C16.54 4.89 19.45 7.8 19.45 11.45C19.45 15.1 16.54 18.01 12.89 18.01C12.89 18.01 13.66 18.84 13.66 18.84ZM12.04 5.61C9.6 5.61 7.6 7.61 7.6 10.05C7.6 11.5 8.35 12.84 9.54 13.62L9.2 14.28L8.6 16.3L10.7 15.7L11.36 15.36C12.14 16.55 13.48 17.3 14.93 17.3C17.37 17.3 19.37 15.3 19.37 12.86C19.37 10.42 17.37 8.42 14.93 8.42C14.93 8.42 12.04 5.61 12.04 5.61Z"/>
         </svg>
     </a>
 
-    <!-- Message Box for copy to clipboard -->
     <div id="messageBox" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-xl opacity-0 transition-opacity duration-300" style="z-index: 1001;">
         <!-- Message will be populated by JavaScript -->
     </div>
 
     <script>
-        // JavaScript for the slideshow functionality
+        // JavaScript for Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Slideshow functionality
         let slideIndex = 1;
         showSlides(slideIndex);
 
@@ -629,25 +694,20 @@
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
-            
-            if (n > slides.length) {slideIndex = 1}
+            if (n > slides.length) {slideIndex = 1}    
             if (n < 1) {slideIndex = slides.length}
-            
             for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+                slides[i].style.display = "none";  
             }
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active-dot", "");
             }
-            
-            slides[slideIndex-1].style.display = "block";
+            slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active-dot";
         }
 
-        // Auto slide every 5 seconds
-        setInterval(function() {
-            plusSlides(1);
-        }, 5000);
+        // Auto slide change (optional)
+        // setInterval(() => plusSlides(1), 5000); // Change image every 5 seconds
 
         // Function to copy text to clipboard and show message
         function copyToClipboard(text, message) {
@@ -668,19 +728,11 @@
         function showMessage(message) {
             const messageBox = document.getElementById('messageBox');
             messageBox.innerText = message;
-            messageBox.classList.add('opacity-100');
+            messageBox.classList.add('show');
             setTimeout(() => {
-                messageBox.classList.remove('opacity-100');
+                messageBox.classList.remove('show');
             }, 3000); // Message disappears after 3 seconds
         }
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
     </script>
 </body>
 </html>
