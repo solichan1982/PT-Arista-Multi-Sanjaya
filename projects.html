@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyek Kami - PT Arista Multi Sanjaya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+        .section-heading {
+            color: #111827;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            background-color: #f59e0b;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .btn-primary:hover {
+            background-color: #d97706;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+        .icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            fill: #f59e0b;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-amber-400 flex items-center">
+                <img src="https://placehold.co/40x40/f59e0b/ffffff?text=Logo" alt="PT Arista Multi Sanjaya Logo" class="h-8 w-8 rounded-full mr-2">
+                PT Arista Multi Sanjaya
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-amber-400 transition-colors duration-300">Beranda</a>
+                <a href="about.html" class="hover:text-amber-400 transition-colors duration-300">Tentang Kami</a>
+                <a href="services.html" class="hover:text-amber-400 transition-colors duration-300">Layanan</a>
+                <a href="projects.html" class="hover:text-amber-400 transition-colors duration-300">Proyek</a>
+                <a href="testimonials.html" class="hover:text-amber-400 transition-colors duration-300">Testimoni</a>
+                <a href="contact.html" class="hover:text-amber-400 transition-colors duration-300">Kontak</a>
+            </div>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Beranda</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Tentang Kami</a>
+            <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Layanan</a>
+            <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Proyek</a>
+            <a href="testimonials.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimoni</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Kontak</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl section-heading text-center mb-12">Proyek Unggulan Kami</h1>
+                <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16">
+                    Lihatlah beberapa proyek terbaru dan paling berkesan yang telah berhasil kami selesaikan. Setiap proyek mencerminkan komitmen kami terhadap kualitas, inovasi, dan kepuasan klien.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Gedung+Perkantoran" alt="Gedung Perkantoran" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Gedung Perkantoran Modern</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Pembangunan gedung perkantoran 15 lantai dengan desain arsitektur kontemporer dan fasilitas cerdas di pusat kota Jakarta.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Jakarta Pusat</li>
+                                <li>Tahun Selesai: 2023</li>
+                                <li>Luas Bangunan: 25.000 m²</li>
+                            </ul>
+                            <a href="project1.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Komplek+Perumahan" alt="Komplek Perumahan" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Komplek Perumahan Elite</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Pengembangan komplek perumahan eksklusif dengan 100 unit rumah, dilengkapi fasilitas umum dan area hijau di Tangerang Selatan.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Tangerang Selatan</li>
+                                <li>Tahun Selesai: 2022</li>
+                                <li>Jumlah Unit: 100</li>
+                            </ul>
+                            <a href="project2.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Jembatan+Penghubung" alt="Jembatan Penghubung" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Jembatan Penghubung Antar Kota</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Pembangunan jembatan sepanjang 500 meter yang menghubungkan dua kota, meningkatkan aksesibilitas dan ekonomi lokal di Jawa Barat.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Jawa Barat</li>
+                                <li>Tahun Selesai: 2021</li>
+                                <li>Panjang: 500 m</li>
+                            </ul>
+                            <a href="project3.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                    <!-- Add more project cards as needed -->
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Interior+Kantor" alt="Interior Kantor" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Desain Interior Kantor Startup</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Perancangan interior kantor modern dan dinamis untuk startup teknologi, memaksimalkan ruang kolaborasi dan produktivitas.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Jakarta Selatan</li>
+                                <li>Tahun Selesai: 2024</li>
+                                <li>Jenis: Desain Interior</li>
+                            </ul>
+                            <a href="project4.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Renovasi+Rumah" alt="Renovasi Rumah" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Renovasi Rumah Klasik Modern</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Renovasi total rumah tinggal dengan perpaduan gaya klasik dan sentuhan modern, meningkatkan nilai estetika dan fungsionalitas.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Surabaya</li>
+                                <li>Tahun Selesai: 2023</li>
+                                <li>Jenis: Renovasi Residensial</li>
+                            </ul>
+                            <a href="project5.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                    <div class="card p-0 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/808080/ffffff?text=Pusat+Perbelanjaan" alt="Pusat Perbelanjaan" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Ekspansi Pusat Perbelanjaan</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Penambahan sayap baru pada pusat perbelanjaan yang sudah ada, termasuk area ritel, restoran, dan fasilitas hiburan.</p>
+                            <ul class="text-sm text-gray-500 list-disc list-inside mb-4">
+                                <li>Lokasi: Bandung</li>
+                                <li>Tahun Selesai: 2022</li>
+                                <li>Jenis: Konstruksi Komersial</li>
+                            </ul>
+                            <a href="project6.html" class="btn-primary w-full mt-auto text-center">Lihat Detail Proyek</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 rounded-t-3xl shadow-lg">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; 2024 PT Arista Multi Sanjaya. Hak Cipta Dilindungi Undang-Undang.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.148 3.252 1.691 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 2.163c-3.204 0-3.584.012-4.85.07-3.252.148-4.771 1.691-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.149 3.225 1.664 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 3.627a6.21 6.21 0 1 0 0 12.42 6.21 6.21 0 0 0 0-12.42zm0 2.163a4.047 4.047 0 1 1 0 8.094 4.047 4.047 0 0 1 0-8.094zm6.527-4.577a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+            <path d="M12.04 2C7.34 2 3.54 5.79 3.54 10.5C3.54 12.12 4 13.68 4.83 15.04L3.02 21.04L9.12 19.23C10.48 20.06 12.04 20.5 13.66 20.5C18.36 20.5 22.15 16.71 22.15 12C22.15 7.3 18.36 3.5 18.36 3.5C12.04 2 12.04 2 12.04 2ZM13.66 18.84C12.39 18.84 11.16 18.5 10.04 17.89L9.7 17.7L6.6 18.6L7.5 15.6L7.31 15.26C6.67 14.1 6.33 12.8 6.33 11.45C6.33 7.8 9.24 4.89 12.89 4.89C14.68 4.89 16.32 5.6 17.55 6.83C18.78 8.06 19.49 9.7 19.49 11.45C19.49 15.1 16.58 18.01 12.93 18.01L13.66 18.84Z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

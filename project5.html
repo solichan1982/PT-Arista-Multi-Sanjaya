@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renovasi Rumah Klasik Modern - PT Arista Multi Sanjaya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Light background */
+            color: #1f2937; /* Dark gray text */
+        }
+        .section-heading {
+            color: #111827; /* Darker gray for headings */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            background-color: #f59e0b; /* Amber */
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; /* Fully rounded */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .btn-primary:hover {
+            background-color: #d97706; /* Darker amber on hover */
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem; /* Rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+        .icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            fill: #f59e0b; /* Amber icon color */
+        }
+        .project-image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .project-image-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* WhatsApp Floating Button Styles */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366; /* WhatsApp green */
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Message Box for copy to clipboard */
+        #messageBox {
+            position: fixed;
+            bottom: 4rem; /* Adjust based on WhatsApp button */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1001;
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+        #messageBox.show {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments for mobile menu */
+        @media (max-width: 768px) {
+            .mobile-menu-button { /* Renamed for clarity */
+                display: block;
+            }
+            #mobile-menu.hidden {
+                display: none;
+            }
+            #mobile-menu.open {
+                display: block;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
+            .whatsapp-float svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-amber-400 flex items-center">
+                <img src="https://placehold.co/40x40/f59e0b/ffffff?text=Logo" alt="PT Arista Multi Sanjaya Logo" class="h-8 w-8 rounded-full mr-2">
+                PT Arista Multi Sanjaya
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-amber-400 transition-colors duration-300">Beranda</a>
+                <a href="about.html" class="hover:text-amber-400 transition-colors duration-300">Tentang Kami</a>
+                <a href="services.html" class="hover:text-amber-400 transition-colors duration-300">Layanan</a>
+                <a href="projects.html" class="hover:text-amber-400 transition-colors duration-300">Proyek</a>
+                <a href="testimonials.html" class="hover:text-amber-400 transition-colors duration-300">Testimoni</a>
+                <a href="contact.html" class="hover:text-amber-400 transition-colors duration-300">Kontak</a>
+            </div>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Beranda</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Tentang Kami</a>
+            <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Layanan</a>
+            <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Proyek</a>
+            <a href="testimonials.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimoni</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Kontak</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl section-heading text-center mb-12">Renovasi Rumah Klasik Modern</h1>
+                
+                <div class="card p-8 mb-12">
+                    <img src="https://placehold.co/1000x600/808080/ffffff?text=Rumah+Klasik+Modern+Utama" alt="Renovasi Rumah Klasik Modern" class="w-full h-96 object-cover rounded-lg mb-8 shadow-lg">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Proyek "Renovasi Rumah Klasik Modern" adalah renovasi total sebuah rumah tinggal yang berlokasi di Surabaya. Proyek ini bertujuan untuk menciptakan perpaduan harmonis antara keindahan arsitektur klasik dengan fungsionalitas dan kenyamanan desain modern. Kami fokus pada peningkatan estetika, efisiensi ruang, dan integrasi teknologi pintar.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Renovasi ini mencakup perombakan tata letak interior, pembaruan fasad, serta instalasi sistem pencahayaan dan pendingin udara yang lebih efisien. Pemilihan material premium seperti marmer, kayu solid, dan sentuhan logam memberikan kesan mewah namun tetap hangat. Hasilnya adalah hunian yang timeless, nyaman, dan sesuai dengan gaya hidup kontemporer.
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Detail Proyek:</h2>
+                    <ul class="text-lg text-gray-700 list-disc list-inside mb-8">
+                        <li><strong>Lokasi:</strong> Surabaya</li>
+                        <li><strong>Tahun Selesai:</strong> 2023</li>
+                        <li><strong>Jenis Proyek:</strong> Renovasi Residensial</li>
+                        <li><strong>Luas Area:</strong> 450 m²</li>
+                        <li><strong>Fitur Utama:</strong> Perpaduan gaya klasik dan modern, peningkatan fungsionalitas, sistem rumah pintar.</li>
+                        <li><strong>Konsep Desain:</strong> Elegan, nyaman, dan efisien energi.</li>
+                        <li><strong>Inovasi:</strong> Pemanfaatan material berkelanjutan, desain pencahayaan adaptif, dan tata ruang terbuka.</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Galeri Proyek</h2>
+                    <div class="project-image-gallery">
+                        <img src="https://placehold.co/800x600/808080/ffffff?text=Fasad+Rumah" alt="Fasad Rumah Klasik Modern" class="rounded-lg">
+                        <img src="https://placehold.co/800x600/808080/ffffff?text=Ruang+Tamu+Modern" alt="Ruang Tamu Modern" class="rounded-lg">
+                        <img src="https://placehold.co/800x600/808080/ffffff?text=Dapur+Elegan" alt="Dapur Elegan" class="rounded-lg">
+                        <img src="https://placehold.co/800x600/808080/ffffff?text=Kamar+Tidur+Utama" alt="Kamar Tidur Utama" class="rounded-lg">
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="projects.html" class="btn-primary inline-block">Kembali ke Daftar Proyek</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 rounded-t-3xl shadow-lg">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; 2024 PT Arista Multi Sanjaya. Hak Cipta Dilindungi Undang-Undang.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.148 3.252 1.691 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 2.163c-3.204 0-3.584.012-4.85.07-3.252.148-4.771 1.691-4.919 4.919-.058 1.265-.07 1.646-.07 4.85s.012 3.584.07 4.85c.149 3.225 1.664 4.771 4.919 4.919 1.265.058 1.646.07 4.85.07s3.584-.012 4.85-.07c3.252-.149 4.771-1.664 4.919-4.919.058-1.265.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.149-3.252-1.664-4.771-4.919-4.919-1.265-.058-1.646-.07-4.85-.07zm0 3.627a6.21 6.21 0 1 0 0 12.42 6.21 6.21 0 0 0 0-12.42zm0 2.163a4.047 4.047 0 1 1 0 8.094 4.047 4.047 0 0 1 0-8.094zm6.527-4.577a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+            <path d="M12.04 2C7.34 2 3.54 5.79 3.54 10.5C3.54 12.12 4 13.68 4.83 15.04L3.02 21.04L9.12 19.23C10.48 20.06 12.04 20.5 13.66 20.5C18.36 20.5 22.15 16.71 22.15 12C22.15 7.3 18.36 3.5 18.36 3.5C12.04 2 12.04 2 12.04 2ZM13.66 18.84C12.39 18.84 11.16 18.5 10.04 17.89L9.7 17.7L6.6 18.6L7.5 15.6L7.31 15.26C6.67 14.1 6.33 12.8 6.33 11.45C6.33 7.8 9.24 4.89 12.89 4.89C16.54 4.89 19.45 7.8 19.45 11.45C19.45 15.1 16.54 18.01 12.89 18.01C12.89 18.01 13.66 18.84 13.66 18.84ZM12.04 5.61C9.6 5.61 7.6 7.61 7.6 10.05C7.6 11.5 8.35 12.84 9.54 13.62L9.2 14.28L8.6 16.3L10.7 15.7L11.36 15.36C12.14 16.55 13.48 17.3 14.93 17.3C17.37 17.3 19.37 15.3 19.37 12.86C19.37 10.42 17.37 8.42 14.93 8.42C14.93 8.42 12.04 5.61 12.04 5.61Z"/>
+        </svg>
+    </a>
+
+    <div id="messageBox" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-xl opacity-0 transition-opacity duration-300" style="z-index: 1001;">
+        <!-- Message will be populated by JavaScript -->
+    </div>
+
+    <script>
+        // JavaScript for Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Function to copy text to clipboard and show message
+        function copyToClipboard(text, message) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showMessage(message);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                showMessage('Gagal menyalin teks.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showMessage(message) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.innerText = message;
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000); // Message disappears after 3 seconds
+        }
+    </script>
+</body>
+</html>
